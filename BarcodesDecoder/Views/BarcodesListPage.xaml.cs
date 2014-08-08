@@ -19,7 +19,24 @@ namespace BarcodesDecoder.Views
             InitializeComponent();
 
             this.DataContext = new BarcodesListViewModel();
-            ((BarcodesListViewModel)this.DataContext).Init();
+
+            ProgressIndicator prog;
+            SystemTray.SetIsVisible(this, true);
+            SystemTray.SetOpacity(this, 0);
+
+            prog = new ProgressIndicator();
+            prog.IsVisible = true;
+            prog.IsIndeterminate = true;
+
+            SystemTray.SetProgressIndicator(this, prog);
+            var task = ((BarcodesListViewModel)this.DataContext).Init();
+            task.ContinueWith(t =>
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    SystemTray.ProgressIndicator.IsVisible = false;
+                }));
+            });
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
