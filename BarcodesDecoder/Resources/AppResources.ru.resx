@@ -122,7 +122,7 @@
     <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
-    <value>en-US</value>
+    <value>ru</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
@@ -135,36 +135,36 @@
     <value>Menu Item</value>
   </data>
   <data name="BarcodeInfoCountryOfOriginLabel" xml:space="preserve">
-    <value>Country of origin: </value>
+    <value>Страна происхождения:</value>
   </data>
   <data name="BarcodeListSearchLabel" xml:space="preserve">
-    <value>search</value>
+    <value>поиск</value>
   </data>
   <data name="BarcodesInfoPageTitle" xml:space="preserve">
-    <value>barcode info</value>
+    <value>штрихкод</value>
   </data>
   <data name="BarcodesListPageTitle" xml:space="preserve">
-    <value>barcodes list</value>
+    <value>список штрихкодов</value>
   </data>
   <data name="CaptureInstructionsText" xml:space="preserve">
-    <value>focus camera on a barcode</value>
+    <value>сфокусируйте камеру на штрихкоде</value>
   </data>
   <data name="CapturePageTitle" xml:space="preserve">
-    <value>capture barcode</value>
+    <value>сканирование штрихкода</value>
   </data>
   <data name="MainMenuBarcodesListButtonText1" xml:space="preserve">
-    <value>barcodes</value>
+    <value>список</value>
   </data>
   <data name="MainMenuBarcodesListButtonText2" xml:space="preserve">
-    <value>list</value>
+    <value>кодов</value>
   </data>
   <data name="MainMenuScanBarcodeButtonText1" xml:space="preserve">
-    <value>scan</value>
+    <value>сканировать</value>
   </data>
   <data name="MainMenuScanBarcodeButtonText2" xml:space="preserve">
-    <value>barcode</value>
+    <value>штрихкод</value>
   </data>
   <data name="MainPageTitle" xml:space="preserve">
-    <value>main menu</value>
+    <value>главная страница</value>
   </data>
 </root>

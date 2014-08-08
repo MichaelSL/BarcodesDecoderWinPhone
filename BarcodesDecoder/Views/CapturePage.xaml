@@ -29,9 +29,9 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0"
                     Margin="12,17,0,28">
-            <TextBlock Text="BARCODE DECODER"
+            <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
                        Style="{StaticResource PhoneTextNormalStyle}" />
-            <TextBlock Text="capture barcode"
+            <TextBlock Text="{Binding Path=LocalizedResources.CapturePageTitle, Source={StaticResource LocalizedStrings}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -44,6 +44,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Path=LocalizedResources.CaptureInstructionsText, Source={StaticResource LocalizedStrings}}"
+                       Style="{StaticResource PhoneTextNormalStyle}"/>
             <Canvas Grid.Row="1"
                     Background="{Binding VideoBrush}" />
         </Grid>
