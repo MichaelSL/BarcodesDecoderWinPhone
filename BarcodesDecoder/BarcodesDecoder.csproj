@@ -142,7 +142,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\barcodes.json">
+    <Content Include="Assets\barcodes.en.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\barcodes.ru.json">

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using System.IO;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace BarcodesDecoder
 {
@@ -16,7 +17,7 @@ namespace BarcodesDecoder
 
         public async Task Init()
         {
-            string filepath = @"Assets\barcodes.json";
+            string filepath = String.Format("Assets\\barcodes.{0}.json", Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName);
             StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             StorageFile file = await folder.GetFileAsync(filepath); // error here
             using (var stream = await file.OpenStreamForReadAsync())
