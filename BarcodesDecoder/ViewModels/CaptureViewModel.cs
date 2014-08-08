@@ -12,6 +12,8 @@ using Windows.Foundation;
 using Windows.Phone.Media.Capture;
 using ZXing;
 using Microsoft.Devices;
+using BarcodesDecoder.Views;
+using System.Windows.Navigation;
 
 namespace BarcodesDecoder.ViewModels
 {
@@ -40,7 +42,6 @@ namespace BarcodesDecoder.ViewModels
         #region Methods
         public async void InitializeAndGo()
         {
-            Results = new ObservableCollection<Result>();
             sensorLocation = CameraSensorLocation.Front;
             if (PhotoCaptureDevice.AvailableSensorLocations.Contains(CameraSensorLocation.Back))
                 sensorLocation = CameraSensorLocation.Back;
@@ -101,11 +102,7 @@ namespace BarcodesDecoder.ViewModels
                     _lastResult.Text != result.Text)
                 {
                     _lastResult = result;
-                    System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
-                    {
-                        System.Windows.MessageBox.Show(result.Text);
-                        Results.Add(result);
-                    });
+                    this.OnBarcodeScanned(result);
                 }
 
             }
@@ -288,17 +285,6 @@ namespace BarcodesDecoder.ViewModels
             }
         }
 
-        public ObservableCollection<Result> Results
-        {
-            get { return _results; }
-            set
-            {
-                if (Equals(value, _results)) return;
-                _results = value;
-                OnPropertyChanged();
-            }
-        }
-
         public PageOrientation Orientation
         {
             get
@@ -324,6 +310,15 @@ namespace BarcodesDecoder.ViewModels
         }
 
         #endregion
+
+        public event EventHandler<Result> BarcodeScanned;
+
+        private void OnBarcodeScanned(Result barcode)
+        {
+            var handler = this.BarcodeScanned;
+            if (handler != null)
+                handler(this, barcode);
+        }
 
         #region INPC
         // INotifyPropertyChanged Implementation

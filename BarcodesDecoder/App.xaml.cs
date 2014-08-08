@@ -18,6 +18,8 @@ namespace BarcodesDecoder
         /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
 
+        public System.Collections.Generic.Stack<object> ParamsStack { get; set; }
+
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
@@ -25,6 +27,8 @@ namespace BarcodesDecoder
         {
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
+
+            this.ParamsStack = new System.Collections.Generic.Stack<object>();
 
             // Standard XAML initialization
             InitializeComponent();
