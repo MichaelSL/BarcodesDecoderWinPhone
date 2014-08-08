@@ -17,7 +17,7 @@ namespace BarcodesDecoder
 
         public async Task Init()
         {
-            string filepath = String.Format("Assets\\barcodes.{0}.json", Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName);
+            string filepath = String.Format("Assets\\barcodes.{0}.json", Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName);
             StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             StorageFile file = await folder.GetFileAsync(filepath); // error here
             using (var stream = await file.OpenStreamForReadAsync())
