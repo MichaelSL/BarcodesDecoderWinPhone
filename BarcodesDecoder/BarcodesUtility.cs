@@ -14,7 +14,7 @@ namespace BarcodesDecoder
         public Dictionary<string, string> BarcodesDb { get; set; }
         private bool isInitialized = false;
 
-        private async Task Init()
+        public async Task Init()
         {
             string filepath = @"Assets\barcodes.json";
             StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;

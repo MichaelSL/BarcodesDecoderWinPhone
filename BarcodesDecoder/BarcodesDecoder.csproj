@@ -98,10 +98,14 @@
     <Compile Include="BarcodesUtility.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="ViewModels\BarcodeInfoViewModel.cs" />
+    <Compile Include="ViewModels\BarcodesListViewModel.cs" />
     <Compile Include="ViewModels\CaptureViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\BarcodeInfoPage.xaml.cs">
       <DependentUpon>BarcodeInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BarcodesListPage.xaml.cs">
+      <DependentUpon>BarcodesListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CapturePage.xaml.cs">
       <DependentUpon>CapturePage.xaml</DependentUpon>
@@ -122,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Views\BarcodeInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BarcodesListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

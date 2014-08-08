@@ -79,7 +79,13 @@
             </Button>
             <Button x:Name="btnBarcodesInfo"
                     Grid.Row="0"
-                    Grid.Column="1" />
+                    Grid.Column="1">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Views/BarcodesListPage.xaml" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
