@@ -36,10 +36,10 @@ namespace BarcodesDecoder.ViewModels
             if (this.Barcode.BarcodeFormat == BarcodeFormat.EAN_13)
             {
                 var regitratorCode = this.Barcode.Text.Substring(0, 3);
-                this.CountryOfOrigin =await barcodesUtility.GetCountry(regitratorCode);
+                this.CountryOfOrigin = await barcodesUtility.GetCountry(regitratorCode);
                 return;
             }
-            throw new InvalidOperationException("This barcodes type not supported yet");
+            this.CountryOfOrigin = BarcodesDecoder.Resources.AppResources.BarcodeFormatNotSupportedText;
         }
 
         private string countryOfOrigin;

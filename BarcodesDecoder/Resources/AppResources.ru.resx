@@ -167,4 +167,7 @@
   <data name="MainPageTitle" xml:space="preserve">
     <value>главная страница</value>
   </data>
+  <data name="BarcodeFormatNotSupportedText" xml:space="preserve">
+    <value>Формат штрихкода еще не поддреживается</value>
+  </data>
 </root>

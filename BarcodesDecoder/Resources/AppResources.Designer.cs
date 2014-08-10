@@ -88,6 +88,15 @@ namespace BarcodesDecoder.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Barcode format not supported yet.
+        /// </summary>
+        public static string BarcodeFormatNotSupportedText {
+            get {
+                return ResourceManager.GetString("BarcodeFormatNotSupportedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Country of origin: .
         /// </summary>
         public static string BarcodeInfoCountryOfOriginLabel {

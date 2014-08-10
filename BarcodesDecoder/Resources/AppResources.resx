@@ -167,4 +167,7 @@
   <data name="MainPageTitle" xml:space="preserve">
     <value>main menu</value>
   </data>
+  <data name="BarcodeFormatNotSupportedText" xml:space="preserve">
+    <value>Barcode format not supported yet</value>
+  </data>
 </root>
