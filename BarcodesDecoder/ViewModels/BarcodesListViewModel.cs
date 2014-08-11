@@ -29,7 +29,7 @@ namespace BarcodesDecoder.ViewModels
                 }
                 else
                 {
-                    this.BarcodesDb = this.utility.BarcodesDb.Where(item => item.Value.StartsWith(this.SearchText)).ToDictionary(item => item.Key, item => item.Value);
+                    this.BarcodesDb = this.utility.BarcodesDb.Where(item => item.Value.ToLowerInvariant().StartsWith(this.SearchText.ToLowerInvariant())).ToDictionary(item => item.Key, item => item.Value);
                 }
             }
         }
