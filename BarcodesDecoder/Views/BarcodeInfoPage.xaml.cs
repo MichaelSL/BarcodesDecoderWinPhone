@@ -26,5 +26,15 @@ namespace BarcodesDecoder.Views
             var result = (Result)((App)App.Current).ParamsStack.Pop();
             this.DataContext = new BarcodeInfoViewModel(result);
         }
+
+        private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                TextBlock textBlock = (TextBlock)sender;
+                MessageBox.Show(textBlock.Text);
+            }
+            catch { }
+        }
     }
 }

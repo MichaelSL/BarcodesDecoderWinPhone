@@ -30,7 +30,8 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=LocalizedResources.BarcodeInfoCountryOfOriginLabel, Source={StaticResource LocalizedStrings}}" />
-                <TextBlock Text="{Binding CountryOfOrigin}" />
+                <TextBlock Text="{Binding CountryOfOrigin}"
+                           Tap="TextBlock_Tap"/>
             </StackPanel>
         </Grid>
     </Grid>
