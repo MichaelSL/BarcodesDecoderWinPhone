@@ -138,7 +138,7 @@
     <value>Страна происхождения:</value>
   </data>
   <data name="BarcodeListSearchLabel" xml:space="preserve">
-    <value>поиск</value>
+    <value>поиск по страни или первым 3 цифрам кода</value>
   </data>
   <data name="BarcodesInfoPageTitle" xml:space="preserve">
     <value>штрихкод</value>

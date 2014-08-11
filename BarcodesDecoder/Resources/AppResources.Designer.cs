@@ -106,7 +106,7 @@ namespace BarcodesDecoder.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to search.
+        ///   Looks up a localized string similar to search by country or barcode first 3 digits.
         /// </summary>
         public static string BarcodeListSearchLabel {
             get {

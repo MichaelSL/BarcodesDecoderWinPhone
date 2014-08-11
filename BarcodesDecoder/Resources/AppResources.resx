@@ -138,7 +138,7 @@
     <value>Country of origin: </value>
   </data>
   <data name="BarcodeListSearchLabel" xml:space="preserve">
-    <value>search</value>
+    <value>search by country or barcode first 3 digits</value>
   </data>
   <data name="BarcodesInfoPageTitle" xml:space="preserve">
     <value>barcode info</value>
