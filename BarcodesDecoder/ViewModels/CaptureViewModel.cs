@@ -311,13 +311,18 @@ namespace BarcodesDecoder.ViewModels
 
         #endregion
 
-        public event EventHandler<Result> BarcodeScanned;
+        public class ResultEventArgs : EventArgs
+        {
+            public Result Result { get; set; }
+        }
+
+        public event EventHandler<ResultEventArgs> BarcodeScanned;
 
         private void OnBarcodeScanned(Result barcode)
         {
             var handler = this.BarcodeScanned;
             if (handler != null)
-                handler(this, barcode);
+                handler(this, new ResultEventArgs { Result = barcode });
         }
 
         #region INPC

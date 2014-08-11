@@ -31,9 +31,9 @@ namespace BarcodesDecoder.Views
             ((CaptureViewModel)DataContext).BarcodeScanned += CapturePage_BarcodeScanned;
         }
 
-        private void CapturePage_BarcodeScanned(object sender, ZXing.Result e)
+        private void CapturePage_BarcodeScanned(object sender, BarcodesDecoder.ViewModels.CaptureViewModel.ResultEventArgs e)
         {
-            ((App)App.Current).ParamsStack.Push(e);
+            ((App)App.Current).ParamsStack.Push(e.Result);
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 NavigationService.Navigate(new Uri("/Views/BarcodeInfoPage.xaml", UriKind.Relative));
