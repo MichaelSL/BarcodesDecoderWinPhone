@@ -73,7 +73,14 @@ namespace BarcodesDecoder.ViewModels
             while (!stop)
             {
                 if (PhotoCaptureDevice.IsFocusSupported(sensorLocation))
-                    await PhotoCaptureDevice.FocusAsync();
+                    try
+                    {
+                        await PhotoCaptureDevice.FocusAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        //log it
+                    }
                 else
                     System.Threading.Thread.Sleep(200);
             }
