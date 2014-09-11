@@ -23,8 +23,20 @@ namespace BarcodesDecoder.Views
         {
             base.OnNavigatedTo(e);
 
-            var result = (Result)((App)App.Current).ParamsStack.Pop();
-            this.DataContext = new BarcodeInfoViewModel(result);
+            var stack = ((App)App.Current).ParamsStack;
+            if (stack.Count > 0)
+            {
+                var result = (Result)((App)App.Current).ParamsStack.Pop();
+                this.DataContext = new BarcodeInfoViewModel(result);
+            }
+            else
+            {
+                MessageBox.Show(BarcodesDecoder.Resources.AppResources.BarcodeInfoDataIsNullErrorMessage);
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    NavigationService.Navigate(new Uri("/Views/CapturePage.xaml", UriKind.Relative));
+                }));
+            }
         }
 
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)

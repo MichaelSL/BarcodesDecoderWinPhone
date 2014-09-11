@@ -170,4 +170,7 @@
   <data name="BarcodeFormatNotSupportedText" xml:space="preserve">
     <value>Barcode format not supported yet</value>
   </data>
+  <data name="BarcodeInfoDataIsNullErrorMessage" xml:space="preserve">
+    <value>Barcode data is broken. Please try again or contact support.</value>
+  </data>
 </root>

@@ -106,6 +106,15 @@ namespace BarcodesDecoder.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Barcode data is broken. Please try again or contact support..
+        /// </summary>
+        public static string BarcodeInfoDataIsNullErrorMessage {
+            get {
+                return ResourceManager.GetString("BarcodeInfoDataIsNullErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to search by country or barcode first 3 digits.
         /// </summary>
         public static string BarcodeListSearchLabel {
