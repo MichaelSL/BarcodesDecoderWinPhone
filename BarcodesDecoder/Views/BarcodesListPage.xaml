@@ -47,17 +47,17 @@
                      TextChanged="txtSearch_TextChanged" />
             <ListBox x:Name="listCountries"
                      Grid.Row="2"
-                     ItemsSource="{Binding BarcodesDb}"
+                     ItemsSource="{Binding BarcodeGroupsView}"
                      SelectionChanged="listCountries_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Key}"
+                            <TextBlock Text="{Binding CodesString}"
                                        Style="{StaticResource PhoneTextLargeStyle}"
-                                       Width="50"/>
+                                       Width="135"/>
                             <TextBlock Text=" - "
                                        Style="{StaticResource PhoneTextLargeStyle}" />
-                            <TextBlock Text="{Binding Value}"
+                            <TextBlock Text="{Binding Name}"
                                        Style="{StaticResource PhoneTextLargeStyle}" />
                         </StackPanel>
                     </DataTemplate>

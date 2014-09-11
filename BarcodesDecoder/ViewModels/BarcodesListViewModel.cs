@@ -10,11 +10,36 @@ namespace BarcodesDecoder.ViewModels
     public class BarcodesListViewModel : INotifyPropertyChanged
     {
         private BarcodesUtility utility;
+
+        public List<BarcodeDisplayGroup> BarcodeGroups { get; set; }
+        public List<BarcodeDisplayGroup> BarcodeGroupsView { get; set; }
         public async Task Init()
         {
             this.utility = new BarcodesUtility();
             await utility.Init();
-            this.BarcodesDb = utility.BarcodesDb;
+
+            this.BarcodeGroups = new List<BarcodeDisplayGroup>();
+            string currentManufacturer = null;
+            foreach (var bcInfo in utility.BarcodesDb)
+            {
+                if (bcInfo.Value != currentManufacturer)
+                {
+                    this.BarcodeGroups.Add(new BarcodeDisplayGroup
+                    {
+                        Name = bcInfo.Value,
+                        Codes = new List<string>()
+                    });
+                    this.BarcodeGroups.Last().Codes.Add(bcInfo.Key);
+                    currentManufacturer = bcInfo.Value;
+                }
+                else
+                {
+                    this.BarcodeGroups.Last().Codes.Add(bcInfo.Key);
+                }
+            }
+            this.BarcodeGroupsView = this.BarcodeGroups.ToList();
+            this.OnPropertyChanged("BarcodeGroupsView");
+
             this.PropertyChanged += BarcodesListViewModel_PropertyChanged;
         }
 
@@ -25,24 +50,13 @@ namespace BarcodesDecoder.ViewModels
                 int dummy;
                 if (Int32.TryParse(this.SearchText, out dummy))
                 {
-                    this.BarcodesDb = this.utility.BarcodesDb.Where(item => item.Key.StartsWith(this.SearchText)).ToDictionary(item => item.Key, item => item.Value);
+                    this.BarcodeGroupsView = this.BarcodeGroups.Where(item => item.Codes.Where(code => code.StartsWith(this.SearchText)).Count() > 0).ToList();
                 }
                 else
                 {
-                    this.BarcodesDb = this.utility.BarcodesDb.Where(item => item.Value.ToLowerInvariant().StartsWith(this.SearchText.ToLowerInvariant())).ToDictionary(item => item.Key, item => item.Value);
+                    this.BarcodeGroupsView = this.BarcodeGroups.Where(item => item.Name.ToLowerInvariant().StartsWith(this.SearchText.ToLowerInvariant())).ToList();
                 }
-            }
-        }
-
-        private Dictionary<string, string> barcodesDb;
-
-        public Dictionary<string, string> BarcodesDb
-        {
-            get { return barcodesDb; }
-            set
-            {
-                barcodesDb = value;
-                OnPropertyChanged();
+                this.OnPropertyChanged("BarcodeGroupsView");
             }
         }
 
@@ -66,6 +80,33 @@ namespace BarcodesDecoder.ViewModels
         {
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+    public class BarcodeDisplayGroup
+    {
+        public string Name { get; set; }
+        public List<string> Codes { get; set; }
+        public string CodesString
+        {
+            get
+            {
+                int[] codesInt = new int[this.Codes.Count];
+                for (int i = 0; i < this.Codes.Count; i++ )
+                {
+                    try
+                    {
+                        codesInt[i] = Int32.Parse(this.Codes[i]);
+                    }
+                    catch { }
+                }
+                int min = codesInt.Min();
+                int max = codesInt.Max();
+                if (min != max)
+                    return String.Format("{0} - {1}", min, max);
+                else
+                    return min.ToString();
+            }
         }
     }
 }
