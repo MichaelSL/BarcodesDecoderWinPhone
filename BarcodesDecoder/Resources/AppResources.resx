@@ -173,4 +173,7 @@
   <data name="BarcodeInfoDataIsNullErrorMessage" xml:space="preserve">
     <value>Barcode data is broken. Please try again or contact support.</value>
   </data>
+  <data name="CantInitCameraErrorText" xml:space="preserve">
+    <value>Can't initialize camera</value>
+  </data>
 </root>

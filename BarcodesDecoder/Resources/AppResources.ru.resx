@@ -173,4 +173,7 @@
   <data name="BarcodeInfoDataIsNullErrorMessage" xml:space="preserve">
     <value>Невозможно получить информацию о штрихкоде. Попробуйте еще раз или обратитесь в техническую поддержку.</value>
   </data>
+  <data name="CantInitCameraErrorText" xml:space="preserve">
+    <value>Не могу инициализировать камеру</value>
+  </data>
 </root>

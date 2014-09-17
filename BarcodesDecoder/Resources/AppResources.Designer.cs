@@ -142,6 +142,15 @@ namespace BarcodesDecoder.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t initialize camera.
+        /// </summary>
+        public static string CantInitCameraErrorText {
+            get {
+                return ResourceManager.GetString("CantInitCameraErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to focus camera on a barcode.
         /// </summary>
         public static string CaptureInstructionsText {
