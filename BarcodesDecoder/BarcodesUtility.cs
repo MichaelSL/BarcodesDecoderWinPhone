@@ -15,11 +15,31 @@ namespace BarcodesDecoder
         public Dictionary<string, string> BarcodesDb { get; set; }
         private bool isInitialized = false;
 
+        private string[] supportedCultures = new string[] { "ru", "en" };
+
         public async Task Init()
         {
-            string filepath = String.Format("Assets\\barcodes.{0}.json", Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName);
+            string filepath = null;
+            if (supportedCultures.Contains(Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName))
+            {
+                filepath = String.Format("Assets\\barcodes.{0}.json", Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName);
+            }
+            else
+            {
+                Yandex.Metrica.Counter.ReportEvent(Telemetry.REVERTING_BARCODE_DEFINITIONS_TO_EN);
+                filepath = "Assets\\barcodes.en.json";
+            }
             StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            StorageFile file = await folder.GetFileAsync(filepath); // error here
+            StorageFile file = null;
+            try
+            {
+                file = await folder.GetFileAsync(filepath);
+            }
+            catch (Exception barcodesFileException)
+            {
+                Yandex.Metrica.Counter.ReportError("Get barcode definitions file failed", barcodesFileException);
+                throw;
+            }
             using (var stream = await file.OpenStreamForReadAsync())
             {
                 using (StreamReader reader = new StreamReader(stream))

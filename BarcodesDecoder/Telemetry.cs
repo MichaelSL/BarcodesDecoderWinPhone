@@ -8,7 +8,8 @@ namespace BarcodesDecoder
 {
     public class Telemetry
     {
-        public static string BARCODE_SCANNED = "BARCODE_SCANNED";
-        public static string BARCODE_DECODED = "BARCODE_DECODED";
+        public static string BARCODE_SCANNED = "events/BARCODE_SCANNED";
+        public static string BARCODE_DECODED = "events/BARCODE_DECODED";
+        public static string REVERTING_BARCODE_DEFINITIONS_TO_EN = "events/REVERTING_BARCODE_DEFINITIONS_TO_EN";
     }
 }
