@@ -48,9 +48,25 @@ namespace BarcodesDecoder.ViewModels
 
             PreviewResolution = GetBestPreviewResolution(sensorLocation);
             CaptureResolution = await GetBestCaptureResolution(sensorLocation, PreviewResolution);
-            await InitializePhotoCaptureDevice(sensorLocation, CaptureResolution, PreviewResolution);
+            try
+            {
+                await InitializePhotoCaptureDevice(sensorLocation, CaptureResolution, PreviewResolution);
+            }
+            catch (Exception captureDeviceInitException)
+            {
+                //log
+                throw;
+            }
 
-            await StartCapturingAsync();
+            try
+            {
+                await StartCapturingAsync();
+            }
+            catch (Exception startCapturingException)
+            {
+                //log
+                throw;
+            }
 
             _previewBuffer = new byte[(int)PreviewResolution.Width * (int)PreviewResolution.Height];
             _rotatedPreviewBuffer = new byte[(int)PreviewResolution.Width * (int)PreviewResolution.Height];

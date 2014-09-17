@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using BarcodesDecoder.ViewModels;
+using BarcodesDecoder.Resources;
 
 namespace BarcodesDecoder.Views
 {
@@ -27,8 +28,19 @@ namespace BarcodesDecoder.Views
         {
             base.OnNavigatedTo(e);
 
-            ((CaptureViewModel)DataContext).InitializeAndGo();
-            ((CaptureViewModel)DataContext).BarcodeScanned += CapturePage_BarcodeScanned;
+            try
+            {
+                ((CaptureViewModel)DataContext).InitializeAndGo();
+                ((CaptureViewModel)DataContext).BarcodeScanned += CapturePage_BarcodeScanned;
+            }
+            catch (Exception ex)
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show(AppResources.CantInitCameraErrorText);
+                    NavigationService.Navigate(new Uri("/Views/MainPage.xaml", UriKind.Relative));
+                }));
+            }
         }
 
         private void CapturePage_BarcodeScanned(object sender, BarcodesDecoder.ViewModels.CaptureViewModel.ResultEventArgs e)
