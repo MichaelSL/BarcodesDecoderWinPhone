@@ -37,6 +37,7 @@ namespace BarcodesDecoder.ViewModels
             {
                 var regitratorCode = this.Barcode.Text.Substring(0, 3);
                 this.CountryOfOrigin = await barcodesUtility.GetCountry(regitratorCode);
+                Yandex.Metrica.Counter.ReportEvent(Telemetry.BARCODE_DECODED);
                 return;
             }
             this.CountryOfOrigin = BarcodesDecoder.Resources.AppResources.BarcodeFormatNotSupportedText;

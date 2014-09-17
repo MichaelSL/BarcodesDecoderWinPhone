@@ -20,6 +20,8 @@ namespace BarcodesDecoder
 
         public System.Collections.Generic.Stack<object> ParamsStack { get; set; }
 
+        private static uint YandexApiKey = 28521;
+
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
@@ -29,6 +31,8 @@ namespace BarcodesDecoder
             UnhandledException += Application_UnhandledException;
 
             this.ParamsStack = new System.Collections.Generic.Stack<object>();
+
+            Yandex.Metrica.Counter.Start(YandexApiKey);
 
             // Standard XAML initialization
             InitializeComponent();
@@ -102,6 +106,10 @@ namespace BarcodesDecoder
             {
                 // An unhandled exception has occurred; break into the debugger
                 Debugger.Break();
+            }
+            if (!Yandex.Metrica.Counter.ReportCrashesEnabled)
+            {
+                Yandex.Metrica.Counter.ReportUnhandledException(e.ExceptionObject);
             }
         }
 

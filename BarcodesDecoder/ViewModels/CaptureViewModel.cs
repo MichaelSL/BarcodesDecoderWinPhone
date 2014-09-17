@@ -55,6 +55,7 @@ namespace BarcodesDecoder.ViewModels
             catch (Exception captureDeviceInitException)
             {
                 //log
+                Yandex.Metrica.Counter.ReportError("Capture device intitialization failed", captureDeviceInitException);
                 throw;
             }
 
@@ -65,6 +66,7 @@ namespace BarcodesDecoder.ViewModels
             catch (Exception startCapturingException)
             {
                 //log
+                Yandex.Metrica.Counter.ReportError("Start capturing failed", startCapturingException);
                 throw;
             }
 
@@ -96,6 +98,7 @@ namespace BarcodesDecoder.ViewModels
                     catch (Exception ex)
                     {
                         //log it
+                        Yandex.Metrica.Counter.ReportError("Focusing failed", ex);
                     }
                 else
                     System.Threading.Thread.Sleep(200);

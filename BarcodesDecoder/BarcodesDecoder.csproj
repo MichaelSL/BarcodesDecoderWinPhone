@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="BarcodesUtility.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Telemetry.cs" />
     <Compile Include="ViewModels\BarcodeInfoViewModel.cs" />
     <Compile Include="ViewModels\BarcodesListViewModel.cs" />
     <Compile Include="ViewModels\CaptureViewModel.cs" />
