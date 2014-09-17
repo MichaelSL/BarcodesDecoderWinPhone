@@ -4,7 +4,7 @@
   <Languages xmlns="">
     <Language code="ru" />
   </Languages>
-  <App xmlns="" ProductID="{8f4123c7-ab34-4e5e-863c-0ff14c75e25a}" Title="BarcodesDecoder" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Michael Samorokov" Description="Sample description" Publisher="BarcodesDecoder" PublisherID="{15338847-1f8e-4d03-8def-7dbad47e7812}">
+  <App xmlns="" ProductID="{8f4123c7-ab34-4e5e-863c-0ff14c75e25a}" Title="BarcodesDecoder" RuntimeType="Silverlight" Version="1.0.1.1" Genre="apps.normal" Author="Michael Samorokov" Description="Sample description" Publisher="BarcodesDecoder" PublisherID="{15338847-1f8e-4d03-8def-7dbad47e7812}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_SENSORS" />
