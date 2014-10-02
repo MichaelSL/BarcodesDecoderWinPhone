@@ -56,7 +56,7 @@ namespace BarcodesDecoder.ViewModels
             {
                 //log
                 Yandex.Metrica.Counter.ReportError("Capture device intitialization failed", captureDeviceInitException);
-                throw;
+                //throw;
             }
 
             try
