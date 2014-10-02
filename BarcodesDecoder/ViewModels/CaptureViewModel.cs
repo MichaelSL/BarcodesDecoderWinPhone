@@ -114,13 +114,20 @@ namespace BarcodesDecoder.ViewModels
             if (_runningScan != null)
                 return;
             _runningScan = new Task<Result>(AnalysePreview);
-            _runningScan.Start();
+            try
+            {
+                _runningScan.Start();
+            }
+            catch (Exception ex)
+            {
+                Yandex.Metrica.Counter.ReportError("Barcode scan failed", ex);
+            }
         }
 
         private Result AnalysePreview()
         {
             var resultTask = DetectBarcodeAsync();
-            resultTask.Wait();
+            resultTask.Wait(2000);  //waiting 2 seconds
             var result = resultTask.Result;
             if (result != null)
             {
