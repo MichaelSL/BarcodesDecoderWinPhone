@@ -33,10 +33,16 @@ namespace BarcodesDecoder.ViewModels
         private async Task DecodeInfo()
         {
             var barcodesUtility = new BarcodesUtility();
-            if (this.Barcode.BarcodeFormat == BarcodeFormat.EAN_13)
+            if (this.Barcode.BarcodeFormat == BarcodeFormat.EAN_13 || this.Barcode.BarcodeFormat == BarcodeFormat.EAN_8)
             {
                 var regitratorCode = this.Barcode.Text.Substring(0, 3);
                 this.CountryOfOrigin = await barcodesUtility.GetCountry(regitratorCode);
+                Yandex.Metrica.Counter.ReportEvent(Telemetry.BARCODE_DECODED);
+                return;
+            }
+            if (this.Barcode.BarcodeFormat == BarcodeFormat.UPC_A || this.Barcode.BarcodeFormat == BarcodeFormat.UPC_E)
+            {
+                this.CountryOfOrigin = "USA (UPC barcode)";
                 Yandex.Metrica.Counter.ReportEvent(Telemetry.BARCODE_DECODED);
                 return;
             }
