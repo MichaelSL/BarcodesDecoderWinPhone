@@ -5,6 +5,8 @@
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+							xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+							xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
                             xmlns:viewModels="clr-namespace:BarcodesDecoder.ViewModels"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -50,5 +52,11 @@
                     Background="{Binding VideoBrush}" />
         </Grid>
     </Grid>
+
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="False">
+			<shell:ApplicationBarIconButton IconUri="/Assets/list_48_white.png" Text="codes list" Click="ApplicationBarIconButton_Click" />
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

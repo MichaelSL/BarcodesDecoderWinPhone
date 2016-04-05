@@ -28,7 +28,7 @@ namespace BarcodesDecoder.Views
         {
             base.OnNavigatedTo(e);
 
-            try
+			try
             {
                 ((CaptureViewModel)DataContext).InitializeAndGo();
                 ((CaptureViewModel)DataContext).BarcodeScanned += CapturePage_BarcodeScanned;
@@ -38,7 +38,6 @@ namespace BarcodesDecoder.Views
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
                     MessageBox.Show(AppResources.CantInitCameraErrorText);
-                    NavigationService.Navigate(new Uri("/Views/MainPage.xaml", UriKind.Relative));
                 }));
             }
         }
@@ -60,5 +59,10 @@ namespace BarcodesDecoder.Views
             ((CaptureViewModel)DataContext).BarcodeScanned -= CapturePage_BarcodeScanned;
             ((CaptureViewModel)DataContext).Stop();
         }
-    }
+
+		private void ApplicationBarIconButton_Click(object sender, EventArgs e)
+		{
+			NavigationService.Navigate(new Uri("/Views/BarcodesListPage.xaml", UriKind.Relative));
+		}
+	}
 }

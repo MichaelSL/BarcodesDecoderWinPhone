@@ -342,9 +342,9 @@ namespace BarcodesDecoder.ViewModels
             }
         }
 
-        #endregion
+		#endregion
 
-        public class ResultEventArgs : EventArgs
+		public class ResultEventArgs : EventArgs
         {
             public Result Result { get; set; }
         }

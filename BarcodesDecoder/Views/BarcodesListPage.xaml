@@ -66,4 +66,10 @@
         </Grid>
     </Grid>
 
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="False">
+			<shell:ApplicationBarIconButton IconUri="/Assets/image_48_white.png" Text="capture" Click="ApplicationBarIconButton_Click"/>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
+
 </phone:PhoneApplicationPage>
