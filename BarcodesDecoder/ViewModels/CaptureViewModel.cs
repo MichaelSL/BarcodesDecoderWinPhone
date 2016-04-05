@@ -14,6 +14,7 @@ using ZXing;
 using Microsoft.Devices;
 using BarcodesDecoder.Views;
 using System.Windows.Navigation;
+using Yandex.Metrica;
 
 namespace BarcodesDecoder.ViewModels
 {
@@ -55,7 +56,7 @@ namespace BarcodesDecoder.ViewModels
             catch (Exception captureDeviceInitException)
             {
                 //log
-                Yandex.Metrica.Counter.ReportError("Capture device intitialization failed", captureDeviceInitException);
+                YandexMetrica.ReportError(Telemetry.CAPTURE_DEVICE_INIT_FAILED, captureDeviceInitException);
                 //throw;
             }
 
@@ -66,7 +67,7 @@ namespace BarcodesDecoder.ViewModels
             catch (Exception startCapturingException)
             {
                 //log
-                Yandex.Metrica.Counter.ReportError("Start capturing failed", startCapturingException);
+                YandexMetrica.ReportError(Telemetry.START_CAPTURE_FAILED, startCapturingException);
                 throw;
             }
 
@@ -98,7 +99,7 @@ namespace BarcodesDecoder.ViewModels
                     catch (Exception ex)
                     {
                         //log it
-                        Yandex.Metrica.Counter.ReportError("Focusing failed", ex);
+                        YandexMetrica.ReportError(Telemetry.FOCUSING_FAILED, ex);
                     }
                 else
                     System.Threading.Thread.Sleep(200);
@@ -120,7 +121,7 @@ namespace BarcodesDecoder.ViewModels
             }
             catch (Exception ex)
             {
-                Yandex.Metrica.Counter.ReportError("Barcode scan failed", ex);
+                YandexMetrica.ReportError(Telemetry.BARCODE_SCAN_FAILED, ex);
             }
         }
 

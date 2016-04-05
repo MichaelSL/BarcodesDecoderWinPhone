@@ -7,6 +7,7 @@ using Windows.Storage;
 using System.IO;
 using Newtonsoft.Json;
 using System.Threading;
+using Yandex.Metrica;
 
 namespace BarcodesDecoder
 {
@@ -26,7 +27,7 @@ namespace BarcodesDecoder
             }
             else
             {
-                Yandex.Metrica.Counter.ReportEvent(Telemetry.REVERTING_BARCODE_DEFINITIONS_TO_EN);
+                YandexMetrica.ReportEvent(Telemetry.REVERTING_BARCODE_DEFINITIONS_TO_EN);
                 filepath = "Assets\\barcodes.en.json";
             }
             StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
@@ -37,7 +38,7 @@ namespace BarcodesDecoder
             }
             catch (Exception barcodesFileException)
             {
-                Yandex.Metrica.Counter.ReportError("Get barcode definitions file failed", barcodesFileException);
+                YandexMetrica.ReportError(Telemetry.READING_BARCODE_DEFINITIONS_FAILED, barcodesFileException);
                 throw;
             }
             using (var stream = await file.OpenStreamForReadAsync())

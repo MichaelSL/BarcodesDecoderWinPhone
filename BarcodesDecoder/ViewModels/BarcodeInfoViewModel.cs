@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Yandex.Metrica;
 using ZXing;
 
 namespace BarcodesDecoder.ViewModels
@@ -37,13 +38,13 @@ namespace BarcodesDecoder.ViewModels
             {
                 var regitratorCode = this.Barcode.Text.Substring(0, 3);
                 this.CountryOfOrigin = await barcodesUtility.GetCountry(regitratorCode);
-                Yandex.Metrica.Counter.ReportEvent(Telemetry.BARCODE_DECODED);
+                YandexMetrica.ReportEvent(Telemetry.BARCODE_DECODED);
                 return;
             }
             if (this.Barcode.BarcodeFormat == BarcodeFormat.UPC_A || this.Barcode.BarcodeFormat == BarcodeFormat.UPC_E)
             {
                 this.CountryOfOrigin = "USA (UPC barcode)";
-                Yandex.Metrica.Counter.ReportEvent(Telemetry.BARCODE_DECODED);
+                YandexMetrica.ReportEvent(Telemetry.BARCODE_DECODED);
                 return;
             }
             this.CountryOfOrigin = BarcodesDecoder.Resources.AppResources.BarcodeFormatNotSupportedText;

@@ -7,6 +7,10 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using BarcodesDecoder.Resources;
+using Yandex.Metrica;
+using Windows.Storage;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace BarcodesDecoder
 {
@@ -20,19 +24,15 @@ namespace BarcodesDecoder
 
         public System.Collections.Generic.Stack<object> ParamsStack { get; set; }
 
-        private static uint YandexApiKey = 28521;
-
-        /// <summary>
-        /// Constructor for the Application object.
-        /// </summary>
-        public App()
+		/// <summary>
+		/// Constructor for the Application object.
+		/// </summary>
+		public App()
         {
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
 
             this.ParamsStack = new System.Collections.Generic.Stack<object>();
-
-            Yandex.Metrica.Counter.Start(YandexApiKey);
 
             // Standard XAML initialization
             InitializeComponent();
@@ -67,9 +67,30 @@ namespace BarcodesDecoder
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
-        private void Application_Launching(object sender, LaunchingEventArgs e)
+        private async void Application_Launching(object sender, LaunchingEventArgs e)
         {
-        }
+			try
+			{
+				StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+				StorageFile file = null;
+
+				file = await folder.GetFileAsync("Assets\\YandexMetricaSettings.json");
+
+				using (var stream = await file.OpenStreamForReadAsync())
+				{
+					using (StreamReader reader = new StreamReader(stream))
+					{
+						var settingsJson = await reader.ReadToEndAsync();
+						var settings = JsonConvert.DeserializeObject<YandexMetricaSettings>(settingsJson);
+						YandexMetrica.Activate(settings.Key);
+					}
+				}
+			}
+			catch (Exception metricaInitException)
+			{
+
+			}
+		}
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
@@ -87,6 +108,7 @@ namespace BarcodesDecoder
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+			YandexMetrica.ReportExit();
         }
 
         // Code to execute if a navigation fails
@@ -107,10 +129,8 @@ namespace BarcodesDecoder
                 // An unhandled exception has occurred; break into the debugger
                 Debugger.Break();
             }
-            if (!Yandex.Metrica.Counter.ReportCrashesEnabled)
-            {
-                Yandex.Metrica.Counter.ReportUnhandledException(e.ExceptionObject);
-            }
+            
+			YandexMetrica.ReportUnhandledException(e.ExceptionObject);
         }
 
         #region Phone application initialization

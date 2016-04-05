@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using BarcodesDecoder.ViewModels;
 using BarcodesDecoder.Resources;
+using Yandex.Metrica;
 
 namespace BarcodesDecoder.Views
 {
@@ -44,7 +45,7 @@ namespace BarcodesDecoder.Views
 
         private void CapturePage_BarcodeScanned(object sender, BarcodesDecoder.ViewModels.CaptureViewModel.ResultEventArgs e)
         {
-            Yandex.Metrica.Counter.ReportEvent(Telemetry.BARCODE_SCANNED);
+            YandexMetrica.ReportEvent(Telemetry.BARCODE_SCANNED);
             ((App)App.Current).ParamsStack.Push(e.Result);
             Dispatcher.BeginInvoke(new Action(() =>
             {

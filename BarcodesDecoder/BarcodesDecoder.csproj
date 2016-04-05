@@ -115,6 +115,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="YandexMetricaSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -140,6 +141,10 @@
     </Content>
     <Content Include="Assets\barcodes.ru.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="app.config" />
+    <Content Include="Assets\YandexMetricaSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="BarcodesDecoder_2014_08_11_20_28_40.sap" />
     <None Include="packages.config" />
@@ -181,15 +186,18 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Interactions, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Yandex.Metrica">
-      <HintPath>..\packages\Yandex.Metrica.1.1.5227.137\lib\wp8\Yandex.Metrica.dll</HintPath>
+    <Reference Include="Yandex.Metrica, Version=2.1.5829.400, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Yandex.Metrica.2.01.5829.400\lib\wp8\Yandex.Metrica.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Zlib.Portable">
-      <HintPath>..\packages\Zlib.Portable.1.9.2\lib\portable-net4+sl4+wp71+win8\Zlib.Portable.dll</HintPath>
+    <Reference Include="Zlib.Portable, Version=1.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zlib.Portable.1.11.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="zxing.wp8.0">
       <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\wp8\zxing.wp8.0.dll</HintPath>

@@ -157,3 +157,4 @@ $RECYCLE.BIN/
 packages/*
 !packages/repositories.config
 BarcodesDecoder/PerfLogs
+/BarcodesDecoder/Assets/YandexMetricaSettings.json
