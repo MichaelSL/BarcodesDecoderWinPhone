@@ -1,6 +1,6 @@
 <MarketplaceDetails>
   <SmallAppTile>StoreIcon.png</SmallAppTile>
-  <ScreenShots>wp_ss_20140811_0001.png;wp_ss_20140811_0002.png;wp_ss_20140811_0003.png;wp_ss_20140811_0004.png;;;;;</ScreenShots>
-  <ScreenShotsWXGA>wp_ss_20140811_00011.png;wp_ss_20140811_00021.png;wp_ss_20140811_00031.png;wp_ss_20140811_00041.png;wp_ss_20140917_0001.png;wxga_list.png;wp_ss_20140906_0001.png;wp_ss_20140906_0003.png;</ScreenShotsWXGA>
-  <ScreenShots720P>scr1.png;scr2.png;scr3.png;;;;;;</ScreenShots720P>
+  <ScreenShots>;wp_ss_20140811_0002.png;wp_ss_20140811_0003.png;wp_ss_20140811_0004.png;;;;;</ScreenShots>
+  <ScreenShotsWXGA>;wp_ss_20140811_00021.png;wp_ss_20140811_00031.png;wp_ss_20140811_00041.png;wp_ss_20140917_0001.png;wxga_list.png;;wp_ss_20140906_0003.png;</ScreenShotsWXGA>
+  <ScreenShots720P>;scr2.png;scr3.png;;;;;;</ScreenShots720P>
 </MarketplaceDetails>
