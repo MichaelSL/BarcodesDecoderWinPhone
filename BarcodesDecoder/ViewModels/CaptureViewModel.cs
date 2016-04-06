@@ -76,6 +76,8 @@ namespace BarcodesDecoder.ViewModels
 			_previewBuffer = new byte[(int)PreviewResolution.Width * (int)PreviewResolution.Height];
 			_rotatedPreviewBuffer = new byte[(int)PreviewResolution.Width * (int)PreviewResolution.Height];
 			_barcodeReader = new BarcodeReader();
+			_barcodeReader.AutoRotate = true;
+			_barcodeReader.Options.PossibleFormats = new List<BarcodeFormat>() { BarcodeFormat.EAN_13, BarcodeFormat.EAN_8, BarcodeFormat.UPC_A, BarcodeFormat.UPC_E, BarcodeFormat.UPC_EAN_EXTENSION };
 
 			PhotoCaptureDevice.PreviewFrameAvailable += PreviewFrame;
 
@@ -171,40 +173,8 @@ namespace BarcodesDecoder.ViewModels
 
 			luminanceSource = new RGBLuminanceSource(_previewBuffer, width, height, RGBLuminanceSource.BitmapFormat.Gray8);
 			var result = _barcodeReader.Decode(luminanceSource);
-			if (result == null)
-			{
-				// ok, one try with rotation by 90 degrees
-				if ((Orientation & PageOrientation.Portrait) == PageOrientation.Portrait)
-				{
-					// if we are in potrait orientation it's better to rotate clockwise
-					// to get it in the right direction
-					luminanceSource = new RGBLuminanceSource(RotateClockwise(_previewBuffer, width, height), height, width, RGBLuminanceSource.BitmapFormat.Gray8);
-				}
-				else
-				{
-					// in landscape we try counter clockwise until we know it better
-					luminanceSource = luminanceSource.rotateCounterClockwise();
-				}
-				result = _barcodeReader.Decode(luminanceSource);
-			}
+			
 			return result;
-		}
-
-		private byte[] RotateClockwise(byte[] buffer, int width, int height)
-		{
-			var newWidth = height;
-			var newHeight = width;
-			for (var yold = 0; yold < height; yold++)
-			{
-				for (var xold = 0; xold < width; xold++)
-				{
-					var xnew = newWidth - yold - 1;
-					var ynew = xold;
-					_rotatedPreviewBuffer[ynew * newWidth + xnew] = buffer[yold * width + xold];
-				}
-			}
-
-			return _rotatedPreviewBuffer;
 		}
 
 		private async Task StartCapturingAsync()
